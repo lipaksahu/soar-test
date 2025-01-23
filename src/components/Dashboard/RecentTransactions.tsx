@@ -3,22 +3,13 @@ import styled from 'styled-components';
 import { useApp } from '../../context/AppContext';
 
 const TransactionsContainer = styled.div`
+  height: 235px;
+  overflow-y: scroll;
   background: white;
   border-radius: 16px;
   padding: 24px;
+  margin-bottom: 24px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-const Title = styled.h2`
-  font-size: 18px;
-  color: #2C2C54;
 `;
 
 const TransactionList = styled.div`
@@ -77,9 +68,6 @@ const RecentTransactions: React.FC = () => {
 
   return (
     <TransactionsContainer>
-      <Header>
-        <Title>Recent Transaction</Title>
-      </Header>
       <TransactionList>
         {transactions.map(transaction => (
           <TransactionItem key={transaction.id}>

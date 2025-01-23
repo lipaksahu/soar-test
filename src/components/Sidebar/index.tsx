@@ -34,13 +34,13 @@ const Logo = styled.div`
   align-items: center;
   gap: 12px;
   padding: 0 24px;
-  margin-bottom: 40px;
+  margin-bottom: 27px;
 `;
 
 const LogoText = styled.h1`
-  font-size: 20px;
-  color: #2C2C54;
-  font-weight: 600;
+  font-size: 25px;
+  color: #343C6A;
+  font-weight: 700;
 `;
 
 const MenuList = styled.nav`
@@ -52,7 +52,7 @@ const MenuItem = styled.div<{ isActive?: boolean }>`
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 24px;
+  padding: 15px 24px;
   cursor: pointer;
   transition: all 0.3s ease;
   color: ${props => props.isActive ? '#232323' : '#B1B1B1'};
@@ -65,7 +65,7 @@ const MenuItem = styled.div<{ isActive?: boolean }>`
 `;
 
 const MenuText = styled.span`
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
 `;
 
@@ -92,7 +92,7 @@ const Sidebar = () => {
   return (
     <SidebarContainer>
       <Logo>
-        <img src="/logo.png" width="20" height="20" alt="Transaction" />
+        <img src="/logo.png" alt="Logo" />
         <LogoText>Soar Task</LogoText>
       </Logo>
       

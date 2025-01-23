@@ -4,25 +4,12 @@ import { useApp } from '../../context/AppContext';
 import { LoadingSpinner } from '../common/LoadingSpinner';
 import { ErrorContainer } from '../common/ErrorMessage';
 
-interface Contact {
-  id: number;
-  name: string;
-  role: string;
-  image: string;
-}
-
 const TransferContainer = styled.div`
   background: white;
   border-radius: 16px;
-  padding: 24px;
+  padding: 45px 25px;
   flex: 1;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-`;
-
-const Title = styled.h2`
-  font-size: 18px;
-  color: #2C2C54;
-  margin-bottom: 20px;
 `;
 
 const ContactsScroll = styled.div`
@@ -51,7 +38,7 @@ const ContactCard = styled.div<{ isSelected?: boolean }>`
   min-width: 80px;
   
   ${props => props.isSelected && `
-    opacity: 0.7;
+    opacity: 0.9;
   `}
 `;
 
@@ -60,33 +47,47 @@ const ContactImage = styled.img`
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
+  margin-bottom: 5px;
 `;
 
-const ContactName = styled.span`
-  font-size: 14px;
-  color: #2C2C54;
+const ContactName = styled.span<{ isSelected: boolean | null }>`
+  font-size: 16px;
+  color: #232323;
   text-align: center;
+  font-weight: ${props => (props.isSelected ? 'bold' : 'normal')};
+  line-height: 1;
 `;
 
-const ContactRole = styled.span`
-  font-size: 12px;
-  color: #A3AED0;
+const ContactRole = styled.span<{ isSelected: boolean | null }>`
+  font-size: 15px;
+  color: #718EBF;
   text-align: center;
+  font-weight: ${props => (props.isSelected ? 'bold' : 'normal')};
+  line-height: 1;
 `;
 
 const TransferForm = styled.form`
   display: flex;
-  flex-direction: column;
   gap: 16px;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const AmountLabel= styled.div`
+   font-size: 16px;
+   color: #718EBF;
+   text-wrap: nowrap;
 `;
 
 const AmountInput = styled.input`
   width: 100%;
-  padding: 12px;
+  padding: 16px;
   border: 1px solid #E2E8F0;
-  border-radius: 8px;
+  border-radius: 30px;
   font-size: 14px;
-  
+  color: #718EBF;
+  background: #EDF1F7;
   &:focus {
     outline: none;
     border-color: #4318FF;
@@ -94,22 +95,41 @@ const AmountInput = styled.input`
 `;
 
 const SendButton = styled.button`
-  background: #2C2C54;
+  background: #232323;
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: 30px;
+  padding: 14px 35px;
   font-size: 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  
+  position: absolute;
+  right: 0;
   &:hover {
     background: #1a1a32;
   }
 `;
+
+const IconButton = styled.button`
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px #E7E4E8;
+  margin: 30px 0 0 55px;
+  &:hover {
+    background-color: #F4F7FE;
+  }
+`;
+
 
 const QuickTransfer: React.FC = () => {
   const { state, dispatch } = useApp();
@@ -159,10 +179,7 @@ const QuickTransfer: React.FC = () => {
 
   return (
     <TransferContainer>
-      <Title>Quick Transfer</Title>
-      
       {error && <ErrorContainer>{error}</ErrorContainer>}
-      
       {isLoading ? (
         <LoadingSpinner />
       ) : (
@@ -175,20 +192,26 @@ const QuickTransfer: React.FC = () => {
                 onClick={() => setSelectedContact(contact.id)}
               >
                 <ContactImage src={contact.image} alt={contact.name} />
-                <ContactName>{contact.name}</ContactName>
-                <ContactRole>{contact.role}</ContactRole>
+                <ContactName isSelected={selectedContact === contact.id}>{contact.name}</ContactName>
+                <ContactRole isSelected={selectedContact === contact.id}>{contact.role}</ContactRole>
               </ContactCard>
             ))}
+            <IconButton>
+                <img src="/right_arrow.svg" alt="Right Arrow" />
+            </IconButton>
           </ContactsScroll>
           <TransferForm onSubmit={handleTransfer}>
+            <AmountLabel>
+                Write Amount
+            </AmountLabel>
             <AmountInput
               type="text"
-              placeholder="Write Amount"
+              placeholder="525.50"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
             />
             <SendButton type="submit" disabled={!selectedContact || !amount}>
-              Send <span>✈️</span>
+              Send  <img src={'/send.png'} alt="Send Button" />
             </SendButton>
           </TransferForm>
         </>

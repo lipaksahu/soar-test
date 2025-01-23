@@ -26,14 +26,7 @@ const ChartContainer = styled.div`
   background: white;
   border-radius: 16px;
   padding: 24px;
-  margin: 24px 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-`;
-
-const ChartHeader = styled.h2`
-  font-size: 18px;
-  color: #2C2C54;
-  margin-bottom: 20px;
 `;
 
 const BalanceHistory: React.FC = () => {
@@ -43,10 +36,11 @@ const BalanceHistory: React.FC = () => {
       {
         fill: true,
         label: 'Balance',
-        data: [200, 400, 600, 400, 500, 300, 500],
-        borderColor: '#4318FF',
-        backgroundColor: 'rgba(67, 24, 255, 0.1)',
-        tension: 0.4,
+        data: [120, 320, 250, 480, 750, 230, 580],
+        borderColor: 'rgb(67, 97, 238)',
+        backgroundColor: 'rgba(67, 97, 238, 0.1)',
+        tension: 0.35,
+        borderWidth: 2,
       },
     ],
   };
@@ -77,17 +71,33 @@ const BalanceHistory: React.FC = () => {
         },
         ticks: {
           color: '#A3AED0',
+          font: {
+            size: 12,
+          },
+        },
+        border: {
+          display: false,
         },
       },
       y: {
+        min: 0,
+        max: 800,
         grid: {
-          color: '#E2E8F0',
+          color: 'rgba(226, 232, 240, 0.5)',
           drawBorder: false,
+          borderDash: [5, 5],
         },
         ticks: {
           color: '#A3AED0',
-          callback: (value: number) => `$${value}`,
+          callback: (value: number) => `${value}`,
           stepSize: 200,
+          font: {
+            size: 12,
+          },
+          padding: 10,
+        },
+        border: {
+          display: false,
         },
       },
     },
@@ -95,8 +105,7 @@ const BalanceHistory: React.FC = () => {
 
   return (
     <ChartContainer>
-      <ChartHeader>Balance History</ChartHeader>
-      <div style={{ height: '300px' }}>
+      <div style={{ height: '225px' }}>
         <Line data={data} options={options} />
       </div>
     </ChartContainer>

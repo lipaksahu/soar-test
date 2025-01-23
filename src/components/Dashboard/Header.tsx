@@ -6,7 +6,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 19px 40px;
   margin-bottom: 24px;
   background-color: #ffffff;
 `;
@@ -20,7 +20,7 @@ const Title = styled.h1`
 const RightSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
 `;
 
 const SearchBar = styled.div`
@@ -30,7 +30,7 @@ const SearchBar = styled.div`
 
 const SearchInput = styled.input`
   width: 100%;
-  padding: 20px;
+  padding: 15px 20px;
   padding-left: 55px;
   border-radius: 30px;
   border: none;

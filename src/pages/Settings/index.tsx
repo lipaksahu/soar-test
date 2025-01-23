@@ -143,7 +143,6 @@ const Settings: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
   } = useForm<ProfileFormData>({
     resolver: yupResolver(profileSchema),
     defaultValues: {

@@ -23,7 +23,26 @@ const DashboardGrid = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 24px;
-  padding: 0 30px 30px;
+  padding: 0 40px 30px;
+`;
+
+const DashboardGridBottom = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  padding: 0 40px 30px;
+`;
+
+const Title2 = styled.h2`
+  color: #343C6A;
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 15px;
+`;
+
+const MyCardsHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
 `;
 
 const Dashboard: React.FC = () => {
@@ -68,18 +87,43 @@ const Dashboard: React.FC = () => {
       <Header />
       <DashboardGrid>
         <div>
+          <MyCardsHeader>
+            <Title2>
+                My Cards
+            </Title2>
+            <button style={{ color: '#343C6A', fontSize: 17 }} onClick={() => alert("See all cards")}>See All</button>
+          </MyCardsHeader>
           <MyCards />
+          <Title2>
+            Weekly Activity
+          </Title2>
           <WeeklyActivity />
-          <div style={{ display: 'flex', gap: '24px' }}>
-            <QuickTransfer />
-            <BalanceHistory />
-          </div>
         </div>
         <div>
+          <Title2>
+            Recent Transaction
+          </Title2>
           <RecentTransactions />
+          <Title2>
+            Expense Statistics
+          </Title2>
           <ExpenseStatistics />
         </div>
       </DashboardGrid>
+      <DashboardGridBottom>
+        <div>
+            <Title2>
+              Quick Transfer
+            </Title2>
+            <QuickTransfer />
+        </div>
+        <div>
+            <Title2>
+              Balance History
+            </Title2>
+            <BalanceHistory />
+        </div>
+      </DashboardGridBottom>
     </DashboardContainer>
   );
 };

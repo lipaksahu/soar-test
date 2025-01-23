@@ -24,7 +24,7 @@ const initialState: AppState = {
       validThru: '12/22',
       cardNumber: '3778 **** **** 1234',
       isDark: false
-    }
+    },
   ],
   transactions: [
     {
@@ -57,19 +57,19 @@ const initialState: AppState = {
       id: 1,
       name: 'Livia Bator',
       role: 'CEO',
-      image: '/path-to-image-1.jpg'
+      image: '/Mask Group.png'
     },
     {
       id: 2,
       name: 'Randy Press',
       role: 'Director',
-      image: '/path-to-image-2.jpg'
+      image: '/Mask_group_1.png'
     },
     {
       id: 3,
       name: 'Workman',
       role: 'Designer',
-      image: '/path-to-image-3.jpg'
+      image: '/Mask_group_2.png'
     }
   ]
 };

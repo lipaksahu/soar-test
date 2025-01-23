@@ -5,16 +5,9 @@ const CardsContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-const CardsHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-`;
-
 const CardGrid = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 30px;
 `;
 
 const Card = styled.div<{ isDark?: boolean }>`
@@ -108,10 +101,6 @@ const MyCards: React.FC = () => {
 
   return (
     <CardsContainer>
-      <CardsHeader>
-        <h2 style={{ fontSize: 22, fontWeight: 600 }}>My Cards</h2>
-        <button>See All</button>
-      </CardsHeader>
       <CardGrid>
         {cards.map((card) => (
           <Card key={card.id} isDark={card.isDark}>

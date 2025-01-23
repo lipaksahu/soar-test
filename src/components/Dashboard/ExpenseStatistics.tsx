@@ -7,6 +7,7 @@ import {
   Legend
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -14,29 +15,23 @@ const ChartContainer = styled.div`
   background: white;
   border-radius: 16px;
   padding: 24px;
-  margin: 24px 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-`;
-
-const ChartHeader = styled.h2`
-  font-size: 18px;
-  color: #2C2C54;
-  margin-bottom: 20px;
 `;
 
 const ExpenseStatistics: React.FC = () => {
   const data = {
-    labels: ['Entertainment', 'Bill Expense', 'Investment', 'Others'],
+    labels: ['Entertainment', 'Others', 'Investment', 'Bill Expense'],
     datasets: [
       {
         data: [30, 15, 20, 35],
         backgroundColor: [
-          '#4318FF',
-          '#FF8F6B',
-          '#6AD2FF',
-          '#2C2C54',
+          '#343C6A',
+          '#FC7900',
+          '#396AFF',
+          '#232323',
         ],
         borderWidth: 0,
+        offset: [80, 25, 25, 25],
       },
     ],
   };
@@ -46,33 +41,42 @@ const ExpenseStatistics: React.FC = () => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
+        display: false,
         position: 'right' as const,
         labels: {
           usePointStyle: true,
           pointStyle: 'circle',
           padding: 20,
           color: '#2C2C54',
+          font: {
+            size: 12,
+          },
         },
       },
       tooltip: {
-        backgroundColor: 'white',
-        titleColor: '#2C2C54',
-        bodyColor: '#2C2C54',
-        borderColor: '#E2E8F0',
-        borderWidth: 1,
-        padding: 12,
-        callbacks: {
-          label: (context: any) => `${context.label}: ${context.raw}%`,
+        enabled: false,
+      },
+      datalabels: {
+        display: true,
+        color: '#fff',
+        formatter: (value: number) => `${value}%\n${data.labels[data.datasets[0].data.indexOf(value)]}`,
+        font: {
+          size: 12,
         },
+        anchor: 'left',
+        align: 'center',
       },
     },
   };
 
   return (
     <ChartContainer>
-      <ChartHeader>Expense Statistics</ChartHeader>
-      <div style={{ height: '300px', position: 'relative' }}>
-        <Pie data={data} options={options} />
+      <div style={{ width: '300px', height: '300px', margin: '0 auto' }}>
+        <Pie 
+          data={data} 
+          options={options} 
+          plugins={[ChartDataLabels]}
+        />
       </div>
     </ChartContainer>
   );
