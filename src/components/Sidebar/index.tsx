@@ -35,6 +35,9 @@ const Logo = styled.div`
   gap: 12px;
   padding: 0 24px;
   margin-bottom: 27px;
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
 `;
 
 const LogoText = styled.h1`

@@ -9,12 +9,22 @@ const HeaderContainer = styled.header`
   padding: 19px 40px;
   margin-bottom: 24px;
   background-color: #ffffff;
+  @media (max-width: 480px) {
+    padding-bottom: 100px;
+    padding-right: 20px;
+    padding-top: 23px;
+    justify-content: center;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 28px;
   color: #343C6A;
   font-weight: 600;
+  @media (max-width: 480px) {
+    text-align: center;
+    font-size: 20px;
+  }
 `;
 
 const RightSection = styled.div`
@@ -26,6 +36,21 @@ const RightSection = styled.div`
 const SearchBar = styled.div`
   position: relative;
   width: 255px;
+  @media (max-width: 480px) {
+    display: none;
+  }
+`;
+
+const SearchBarMobile = styled.div`
+  position: absolute;
+  width: 255px;
+  display: none;
+  top: 80px; 
+  width: 320px;
+  background: #fff;
+  @media (max-width: 480px) {
+    display: block;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -60,9 +85,11 @@ const IconButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  
   &:hover {
     background-color: #F4F7FE;
+  }
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -71,6 +98,11 @@ const ProfileImage = styled.img`
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  @media (max-width: 480px) {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
 `;
 
 const Header: React.FC = () => {
@@ -101,6 +133,15 @@ const Header: React.FC = () => {
           alt={user.name}
         />
       </RightSection>
+      <SearchBarMobile>
+        <SearchIcon>
+        <img src="/search.png" width="20" height="20" alt="Search Icon" />
+        </SearchIcon>
+        <SearchInput 
+        type="text" 
+        placeholder="Search for something"
+        />
+    </SearchBarMobile>
     </HeaderContainer>
   );
 };

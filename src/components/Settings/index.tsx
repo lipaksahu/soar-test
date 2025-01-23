@@ -17,6 +17,16 @@ const SettingsContainer = styled.div`
   background: #fff;
   border-radius: 20px;
   flex: 1;
+
+  @media (max-width: 1024px) {
+    padding: 20px;
+    margin: 0 20px 20px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    margin: 0 16px 16px;
+  }
 `;
 
 const TabsContainer = styled.div`
@@ -24,6 +34,22 @@ const TabsContainer = styled.div`
   gap: 32px;
   border-bottom: 2px solid #E2E8F0;
   margin-bottom: 32px;
+
+  @media (max-width: 1024px) {
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 16px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 const Tab = styled.button<TabProps>`
@@ -45,6 +71,15 @@ const Tab = styled.button<TabProps>`
     background-color: #2C2C54;
     display: ${props => props.isActive ? 'block' : 'none'};
   }
+
+  @media (max-width: 1024px) {
+    padding: 10px 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px 0;
+    white-space: nowrap;
+  }
 `;
 
 const FormContainer = styled.form`
@@ -52,6 +87,15 @@ const FormContainer = styled.form`
   justify-content: space-between;
   gap: 24px;
   max-width: 1200px;
+  
+  @media (max-width: 1024px) {
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
 `;
 
 const FormGroup = styled.div`
@@ -59,6 +103,10 @@ const FormGroup = styled.div`
   flex-direction: column;
   gap: 8px;
   margin-bottom: 15px;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 12px;
+  }
 `;
 
 const Label = styled.label`
@@ -78,6 +126,10 @@ const Input = styled.input<{ hasError?: boolean }>`
   border-radius: 8px;
   font-size: 14px;
 
+  @media (max-width: 1024px) {
+    padding: 10px;
+  }
+
   &:focus {
     outline: none;
     border-color: ${props => props.hasError ? '#FF0000' : '#4318FF'};
@@ -89,10 +141,30 @@ const ProfileImageContainer = styled.div`
   width: 100px;
   height: 100px;
   margin-bottom: 24px;
+
+  @media (max-width: 1024px) {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 22px;
+  }
+
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+  }
 `;
 
 const FormMainContainer = styled.div`
   width: 43%;
+
+  @media (max-width: 1024px) {
+    width: 48%;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const ProfileImage = styled.img`
@@ -125,6 +197,18 @@ const SaveButton = styled.button`
   float: right;
   &:hover {
     background: #1a1a32;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 10px 40px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 16px;
+    float: none;
+    padding: 12px;
   }
 `;
 

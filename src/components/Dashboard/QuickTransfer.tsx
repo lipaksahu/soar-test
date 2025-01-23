@@ -10,6 +10,9 @@ const TransferContainer = styled.div`
   padding: 45px 25px;
   flex: 1;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    @media (max-width: 480px) {
+    margin: 0 0 15px 0;
+  }
 `;
 
 const ContactsScroll = styled.div`
@@ -127,6 +130,9 @@ const IconButton = styled.button`
   margin: 30px 0 0 55px;
   &:hover {
     background-color: #F4F7FE;
+  }
+  @media (max-width: 480px) {
+    margin: 20px 0 0 10px;
   }
 `;
 

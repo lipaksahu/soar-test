@@ -17,6 +17,22 @@ const DashboardGrid = styled.div`
   grid-template-columns: 2fr 1fr;
   gap: 24px;
   padding: 0 40px 30px;
+
+  @media (max-width: 1024px) { // iPad Pro and smaller
+    grid-template-columns: 1fr;
+    padding: 0 24px 20px;
+  }
+
+  @media (max-width: 768px) { // iPad Mini and smaller
+    gap: 20px;
+    padding: 0 16px 16px;
+  }
+
+  @media (max-width: 480px) { // Mobile
+    gap: 16px;
+    display: block;
+    padding: 0 12px 12px;
+  }
 `;
 
 const DashboardGridBottom = styled.div`
@@ -24,6 +40,22 @@ const DashboardGridBottom = styled.div`
   grid-template-columns: 1fr 2fr;
   gap: 24px;
   padding: 0 40px 30px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    padding: 0 24px 20px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 20px;
+    padding: 0 16px 16px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 16px;
+    display: block;
+    padding: 0 12px 12px;
+  }
 `;
 
 const Title2 = styled.h2`
@@ -31,16 +63,38 @@ const Title2 = styled.h2`
   font-weight: 600;
   font-size: 22px;
   margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 `;
 
 const MyCardsHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 480px) {
+    button {
+      font-size: 14px;
+    }
+  }
 `;
 
 const DashboardContent = styled.div`
   flex: 1;
   padding: 0 0 24px;
+
+  @media (max-width: 768px) {
+    padding: 0 0 16px;
+    display: block;
+  }
 `;
 
 const Dashboard: React.FC = () => {

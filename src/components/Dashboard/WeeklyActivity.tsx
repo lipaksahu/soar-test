@@ -26,6 +26,9 @@ const ChartContainer = styled.div`
   padding: 24px;
   margin: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  @media (max-width: 480px) {
+    margin: 0 0 15px 0;
+  }
 `;
 
 const ChartHeader = styled.div`

@@ -8,6 +8,28 @@ const CardsContainer = styled.div`
 const CardGrid = styled.div`
   display: flex;
   gap: 30px;
+  
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (max-width: 480px) {
+    flex-wrap: nowrap;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    justify-content: flex-start;
+    
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 `;
 
 const Card = styled.div<{ isDark?: boolean }>`
@@ -41,6 +63,11 @@ const Card = styled.div<{ isDark?: boolean }>`
     gap: 23%;
     margin: 24px 0;
     padding: 0 20px 0 20px;
+
+    @media (max-width: 480px) {
+      gap: 15%;
+      margin: 16px 0;
+    }
   }
 
   .detail-label {
@@ -58,6 +85,11 @@ const Card = styled.div<{ isDark?: boolean }>`
   .card-number {
     font-size: 22px;
     letter-spacing: 2px;
+
+    @media (max-width: 480px) {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
   }
 
   .chip-icon {
@@ -90,6 +122,14 @@ const Card = styled.div<{ isDark?: boolean }>`
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+   @media (max-width: 480px) {
+    width: 100%;
+    min-width: 280px;
+    height: auto;
+    min-height: 200px;
+    display: block;
   }
 `;
 
