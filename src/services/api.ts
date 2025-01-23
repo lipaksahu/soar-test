@@ -70,7 +70,7 @@ export const api = {
     return {
       name: 'Charlene Reed',
       email: 'charlenereed@gmail.com',
-      avatar: '/path-to-avatar.jpg'
+      avatar: '/Mask Group (3).png'
     };
   },
 

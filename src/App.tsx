@@ -1,38 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import styled from 'styled-components';
-import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
-import Settings from './pages/Settings';
+import Settings from './components/Settings';
 import GlobalStyles from './styles/GlobalStyles';
 import { AppProvider } from './context/AppContext';
+import Layout from './components/Layout';
 
-const AppContainer = styled.div`
-  display: flex;
-  min-height: 100vh;
-`;
-
-const MainContent = styled.main`
-  flex: 1;
-  background-color: #F8F9FA;
-`;
-
-function App() {
+const App: React.FC = () => {
   return (
     <AppProvider>
       <Router>
         <GlobalStyles />
-        <AppContainer>
-          <Sidebar />
-          <MainContent>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/settings" element={<Settings />} />
-            </Routes>
-          </MainContent>
-        </AppContainer>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </Layout>
       </Router>
     </AppProvider>
   );
-}
+};
 
 export default App;

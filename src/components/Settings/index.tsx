@@ -4,8 +4,8 @@ import { useApp } from '../../context/AppContext';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema, ProfileFormData } from './validationSchema';
-import { LoadingSpinner } from '../../components/common/LoadingSpinner';
-import { ErrorContainer } from '../../components/common/ErrorMessage';
+import { LoadingSpinner } from '../common/LoadingSpinner';
+import { ErrorContainer } from '../common/ErrorMessage';
 
 interface TabProps {
   isActive?: boolean;
@@ -13,19 +13,16 @@ interface TabProps {
 
 const SettingsContainer = styled.div`
   padding: 24px;
+  margin: 0 30px 20px;
+  background: #fff;
+  border-radius: 20px;
   flex: 1;
-`;
-
-const Title = styled.h1`
-  font-size: 24px;
-  color: #2C2C54;
-  margin-bottom: 24px;
 `;
 
 const TabsContainer = styled.div`
   display: flex;
   gap: 32px;
-  border-bottom: 1px solid #E2E8F0;
+  border-bottom: 2px solid #E2E8F0;
   margin-bottom: 32px;
 `;
 
@@ -51,8 +48,8 @@ const Tab = styled.button<TabProps>`
 `;
 
 const FormContainer = styled.form`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   gap: 24px;
   max-width: 1200px;
 `;
@@ -61,6 +58,7 @@ const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 15px;
 `;
 
 const Label = styled.label`
@@ -93,6 +91,10 @@ const ProfileImageContainer = styled.div`
   margin-bottom: 24px;
 `;
 
+const FormMainContainer = styled.div`
+  width: 43%;
+`;
+
 const ProfileImage = styled.img`
   width: 100%;
   height: 100%;
@@ -104,29 +106,23 @@ const EditIcon = styled.button`
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 32px;
-  height: 32px;
   border-radius: 50%;
-  background: #2C2C54;
   border: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  padding: 0;
 `;
 
 const SaveButton = styled.button`
-  background: #2C2C54;
+  background: #232323;
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 12px 24px;
+  padding: 12px 50px;
   font-size: 14px;
   cursor: pointer;
   margin-top: 24px;
   width: fit-content;
-  
+  float: right;
   &:hover {
     background: #1a1a32;
   }
@@ -148,6 +144,7 @@ const Settings: React.FC = () => {
     defaultValues: {
       yourName: user.name,
       userName: user.name,
+      password: '',
       email: user.email,
       dateOfBirth: '25 January 1990',
       presentAddress: 'San Jose, California, USA',
@@ -185,10 +182,7 @@ const Settings: React.FC = () => {
 
   return (
     <SettingsContainer>
-      <Title>Setting</Title>
-      
       {error && <ErrorContainer>{error}</ErrorContainer>}
-      
       <TabsContainer>
         <Tab 
           isActive={activeTab === 'profile'} 
@@ -212,111 +206,121 @@ const Settings: React.FC = () => {
 
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <ProfileImageContainer>
-          <ProfileImage src={user.avatar} alt="Profile" />
-          <EditIcon>✏️</EditIcon>
+          <ProfileImage src={'/Mask Group (3).png'} alt="Profile" />
+          <EditIcon>
+            <img src="/edit.png" width="20" height="20" alt="Edit Icon" />
+          </EditIcon>
         </ProfileImageContainer>
+        <FormMainContainer>
+          <FormGroup>
+            <Label>Your Name</Label>
+            <Input
+              {...register('yourName')}
+              hasError={!!errors.yourName}
+            />
+            {errors.yourName && (
+              <ErrorMessage>{errors.yourName.message}</ErrorMessage>
+            )}
+          </FormGroup>
 
-        <FormGroup>
-          <Label>Your Name</Label>
-          <Input
-            {...register('yourName')}
-            hasError={!!errors.yourName}
-          />
-          {errors.yourName && (
-            <ErrorMessage>{errors.yourName.message}</ErrorMessage>
-          )}
-        </FormGroup>
+          <FormGroup>
+            <Label>Email</Label>
+            <Input
+              type="email"
+              {...register('email')}
+              hasError={!!errors.email}
+            />
+            {errors.email && (
+              <ErrorMessage>{errors.email.message}</ErrorMessage>
+            )}
+          </FormGroup>
 
-        <FormGroup>
-          <Label>User Name</Label>
-          <Input
-            {...register('userName')}
-            hasError={!!errors.userName}
-          />
-          {errors.userName && (
-            <ErrorMessage>{errors.userName.message}</ErrorMessage>
-          )}
-        </FormGroup>
+          <FormGroup>
+            <Label>Date of Birth</Label>
+            <Input
+              {...register('dateOfBirth')}
+              hasError={!!errors.dateOfBirth}
+            />
+            {errors.dateOfBirth && (
+              <ErrorMessage>{errors.dateOfBirth.message}</ErrorMessage>
+            )}
+          </FormGroup>
+          <FormGroup>
+            <Label>Permanent Address</Label>
+            <Input
+              {...register('permanentAddress')}
+              hasError={!!errors.permanentAddress}
+            />
+            {errors.permanentAddress && (
+              <ErrorMessage>{errors.permanentAddress.message}</ErrorMessage>
+            )}
+          </FormGroup>
+          <FormGroup>
+            <Label>Postal Code</Label>
+            <Input
+              {...register('postalCode')}
+              hasError={!!errors.postalCode}
+            />
+            {errors.postalCode && (
+              <ErrorMessage>{errors.postalCode.message}</ErrorMessage>
+            )}
+          </FormGroup>
+        </FormMainContainer>
+        <FormMainContainer>
+          <FormGroup>
+            <Label>User Name</Label>
+            <Input
+              {...register('userName')}
+              hasError={!!errors.userName}
+            />
+            {errors.userName && (
+              <ErrorMessage>{errors.userName.message}</ErrorMessage>
+            )}
+          </FormGroup>
+          <FormGroup>
+            <Label>Password</Label>
+            <Input
+              {...register('password')}
+              hasError={!!errors.password}
+            />
+            {errors.password && (
+              <ErrorMessage>{errors.password.message}</ErrorMessage>
+            )}
+          </FormGroup>
 
-        <FormGroup>
-          <Label>Email</Label>
-          <Input
-            type="email"
-            {...register('email')}
-            hasError={!!errors.email}
-          />
-          {errors.email && (
-            <ErrorMessage>{errors.email.message}</ErrorMessage>
-          )}
-        </FormGroup>
+          <FormGroup>
+            <Label>Present Address</Label>
+            <Input
+              {...register('presentAddress')}
+              hasError={!!errors.presentAddress}
+            />
+            {errors.presentAddress && (
+              <ErrorMessage>{errors.presentAddress.message}</ErrorMessage>
+            )}
+          </FormGroup>
 
-        <FormGroup>
-          <Label>Date of Birth</Label>
-          <Input
-            {...register('dateOfBirth')}
-            hasError={!!errors.dateOfBirth}
-          />
-          {errors.dateOfBirth && (
-            <ErrorMessage>{errors.dateOfBirth.message}</ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
-          <Label>Present Address</Label>
-          <Input
-            {...register('presentAddress')}
-            hasError={!!errors.presentAddress}
-          />
-          {errors.presentAddress && (
-            <ErrorMessage>{errors.presentAddress.message}</ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
-          <Label>Permanent Address</Label>
-          <Input
-            {...register('permanentAddress')}
-            hasError={!!errors.permanentAddress}
-          />
-          {errors.permanentAddress && (
-            <ErrorMessage>{errors.permanentAddress.message}</ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
-          <Label>City</Label>
-          <Input
-            {...register('city')}
-            hasError={!!errors.city}
-          />
-          {errors.city && (
-            <ErrorMessage>{errors.city.message}</ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
-          <Label>Postal Code</Label>
-          <Input
-            {...register('postalCode')}
-            hasError={!!errors.postalCode}
-          />
-          {errors.postalCode && (
-            <ErrorMessage>{errors.postalCode.message}</ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
-          <Label>Country</Label>
-          <Input
-            {...register('country')}
-            hasError={!!errors.country}
-          />
-          {errors.country && (
-            <ErrorMessage>{errors.country.message}</ErrorMessage>
-          )}
-        </FormGroup>
-
-        <SaveButton type="submit">Save</SaveButton>
+          <FormGroup>
+            <Label>City</Label>
+            <Input
+              {...register('city')}
+              hasError={!!errors.city}
+            />
+            {errors.city && (
+              <ErrorMessage>{errors.city.message}</ErrorMessage>
+            )}
+          </FormGroup>
+          <FormGroup>
+            <Label>Country</Label>
+            <Input
+              {...register('country')}
+              hasError={!!errors.country}
+            />
+            {errors.country && (
+              <ErrorMessage>{errors.country.message}</ErrorMessage>
+            )}
+          </FormGroup>
+          <SaveButton type="submit">Save</SaveButton>
+        </FormMainContainer>
       </FormContainer>
     </SettingsContainer>
   );

@@ -10,6 +10,11 @@ export const profileSchema = yup.object({
     .string()
     .required('Username is required')
     .min(3, 'Username must be at least 3 characters'),
+
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters'),
   
   email: yup
     .string()

@@ -5,19 +5,12 @@ import { ErrorContainer } from '../common/ErrorMessage';
 import { useApp } from '../../context/AppContext';
 import { api } from '../../services/api';
 
-import Header from './Header';
 import MyCards from './MyCards';
 import WeeklyActivity from './WeeklyActivity';
 import RecentTransactions from './RecentTransactions';
 import ExpenseStatistics from './ExpenseStatistics';
 import QuickTransfer from './QuickTransfer';
 import BalanceHistory from './BalanceHistory';
-
-const DashboardContainer = styled.main`
-  flex: 1;
-  padding: 0 0 24px;
-  background-color: #f8f9fa;
-`;
 
 const DashboardGrid = styled.div`
   display: grid;
@@ -43,6 +36,11 @@ const Title2 = styled.h2`
 const MyCardsHeader = styled.div`
     display: flex;
     justify-content: space-between;
+`;
+
+const DashboardContent = styled.div`
+  flex: 1;
+  padding: 0 0 24px;
 `;
 
 const Dashboard: React.FC = () => {
@@ -83,8 +81,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <DashboardContainer>
-      <Header />
+    <DashboardContent>
       <DashboardGrid>
         <div>
           <MyCardsHeader>
@@ -124,7 +121,7 @@ const Dashboard: React.FC = () => {
             <BalanceHistory />
         </div>
       </DashboardGridBottom>
-    </DashboardContainer>
+    </DashboardContent>
   );
 };
 

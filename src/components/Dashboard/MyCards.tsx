@@ -38,7 +38,7 @@ const Card = styled.div<{ isDark?: boolean }>`
 
   .card-details {
     display: flex;
-    justify-content: space-between;
+    gap: 23%;
     margin: 24px 0;
     padding: 0 20px 0 20px;
   }
@@ -96,8 +96,6 @@ const Card = styled.div<{ isDark?: boolean }>`
 const MyCards: React.FC = () => {
   const { state, dispatch } = useApp();
   const { cards } = state;
-
-  console.log({ cards })
 
   return (
     <CardsContainer>
