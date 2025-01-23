@@ -139,32 +139,36 @@ const MyCards: React.FC = () => {
 
   return (
     <CardsContainer>
-      <CardGrid>
+      <CardGrid aria-label="Credit cards grid">
         {cards.map((card) => (
-          <Card key={card.id} isDark={card.isDark}>
+          <Card 
+            key={card.id} 
+            isDark={card.isDark}
+            aria-label={`Credit card with balance $${card.balance}`}
+          >
             <div className='balance-details'>
               <div>
                 <div className="balance-label">Balance</div>
-                <h3 className="balance-amount">${card.balance}</h3>
+                <h3 className="balance-amount" aria-label={`Balance: $${card.balance}`}>${card.balance}</h3>
               </div>
               <div className="chip-icon">
-                <img src={card.isDark ? '/Chip_Card_white.png' : '/Chip_Card_black.png'} width="36" height="36" alt="Chip Card" />
+                <img src={card.isDark ? '/Chip_Card_white.png' : '/Chip_Card_black.png'} width="36" height="36" alt="Credit card chip" />
               </div>
             </div>
             <div className="card-details">
               <div>
                 <div className="detail-label">CARD HOLDER</div>
-                <div className="detail-value">{card.cardHolder}</div>
+                <div className="detail-value" aria-label={`Card holder: ${card.cardHolder}`}>{card.cardHolder}</div>
               </div>
               <div>
                 <div className="detail-label">VALID THRU</div>
-                <div className="detail-value">{card.validThru}</div>
+                <div className="detail-value" aria-label={`Valid through: ${card.validThru}`}>{card.validThru}</div>
               </div>
             </div>
             <div className="card-number-container">
-                <div className="card-number">{card.cardNumber}</div>
+                <div className="card-number" aria-label={`Card number: ${card.cardNumber}`}>{card.cardNumber}</div>
                 <div className="card-brand">
-                    <img src={card.isDark ? '/mastercard.png' : '/mastercard_black.png'} alt="Card brandk" />
+                    <img src={card.isDark ? '/mastercard.png' : '/mastercard_black.png'} alt="Mastercard logo" />
                 </div>
             </div>
           </Card>

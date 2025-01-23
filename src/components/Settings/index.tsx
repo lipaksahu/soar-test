@@ -282,22 +282,28 @@ const Settings: React.FC = () => {
   }
 
   return (
-    <SettingsContainer>
-      {error && <ErrorContainer>{error}</ErrorContainer>}
-      <TabsContainer>
+    <SettingsContainer role="main" aria-label="Settings page">
+      {error && <ErrorContainer role="alert">{error}</ErrorContainer>}
+      <TabsContainer role="tablist" aria-label="Settings sections">
         <Tab 
+          role="tab"
+          aria-selected={activeTab === 'profile'}
           isActive={activeTab === 'profile'} 
           onClick={() => setActiveTab('profile')}
         >
           Edit Profile
         </Tab>
         <Tab 
+          role="tab"
+          aria-selected={activeTab === 'preferences'}
           isActive={activeTab === 'preferences'} 
           onClick={() => setActiveTab('preferences')}
         >
           Preferences
         </Tab>
         <Tab 
+          role="tab"
+          aria-selected={activeTab === 'security'}
           isActive={activeTab === 'security'} 
           onClick={() => setActiveTab('security')}
         >
@@ -305,10 +311,13 @@ const Settings: React.FC = () => {
         </Tab>
       </TabsContainer>
 
-      <FormContainer onSubmit={handleSubmit(onSubmit)}>
+      <FormContainer onSubmit={handleSubmit(onSubmit)} aria-label="Profile settings form">
         <ProfileImageContainer>
           <ProfileImage src={profileImage} alt="Profile" />
-          <EditIcon onClick={handleEditClick}>
+          <EditIcon 
+            onClick={handleEditClick}
+            aria-label="Change profile picture"
+          >
             <img src="/edit.png" width="20" height="20" alt="Edit Icon" />
           </EditIcon>
           <input
@@ -317,117 +326,153 @@ const Settings: React.FC = () => {
             onChange={handleImageSelect}
             accept="image/*"
             style={{ display: 'none' }}
+            aria-label="Upload profile picture"
           />
         </ProfileImageContainer>
         <FormMainContainer>
           <FormGroup>
-            <Label>Your Name</Label>
+            <Label htmlFor="yourName">Your Name</Label>
             <Input
+              id="yourName"
               {...register('yourName')}
               hasError={!!errors.yourName}
+              aria-invalid={!!errors.yourName}
+              aria-describedby={errors.yourName ? "yourName-error" : undefined}
             />
             {errors.yourName && (
-              <ErrorMessage>{errors.yourName.message}</ErrorMessage>
+              <ErrorMessage id="yourName-error" role="alert">{errors.yourName.message}</ErrorMessage>
             )}
           </FormGroup>
 
           <FormGroup>
-            <Label>Email</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
+              id="email"
               type="email"
               {...register('email')}
               hasError={!!errors.email}
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
             />
             {errors.email && (
-              <ErrorMessage>{errors.email.message}</ErrorMessage>
+              <ErrorMessage id="email-error" role="alert">{errors.email.message}</ErrorMessage>
             )}
           </FormGroup>
 
           <FormGroup>
-            <Label>Date of Birth</Label>
+            <Label htmlFor="dateOfBirth">Date of Birth</Label>
             <Input
+              id="dateOfBirth"
               {...register('dateOfBirth')}
               hasError={!!errors.dateOfBirth}
+              aria-invalid={!!errors.dateOfBirth}
+              aria-describedby={errors.dateOfBirth ? "dob-error" : undefined}
             />
             {errors.dateOfBirth && (
-              <ErrorMessage>{errors.dateOfBirth.message}</ErrorMessage>
+              <ErrorMessage id="dob-error" role="alert">{errors.dateOfBirth.message}</ErrorMessage>
             )}
           </FormGroup>
           <FormGroup>
-            <Label>Permanent Address</Label>
+            <Label htmlFor="permanentAddress">Permanent Address</Label>
             <Input
+              id="permanentAddress"
               {...register('permanentAddress')}
               hasError={!!errors.permanentAddress}
+              aria-invalid={!!errors.permanentAddress}
+              aria-describedby={errors.permanentAddress ? "permanentAddress-error" : undefined}
             />
             {errors.permanentAddress && (
-              <ErrorMessage>{errors.permanentAddress.message}</ErrorMessage>
+              <ErrorMessage id="permanentAddress-error" role="alert">{errors.permanentAddress.message}</ErrorMessage>
             )}
           </FormGroup>
           <FormGroup>
-            <Label>Postal Code</Label>
+            <Label htmlFor="postalCode">Postal Code</Label>
             <Input
+              id="postalCode"
               {...register('postalCode')}
               hasError={!!errors.postalCode}
+              aria-invalid={!!errors.postalCode}
+              aria-describedby={errors.postalCode ? "postalCode-error" : undefined}
             />
             {errors.postalCode && (
-              <ErrorMessage>{errors.postalCode.message}</ErrorMessage>
+              <ErrorMessage id="postalCode-error" role="alert">{errors.postalCode.message}</ErrorMessage>
             )}
           </FormGroup>
         </FormMainContainer>
         <FormMainContainer>
           <FormGroup>
-            <Label>User Name</Label>
+            <Label htmlFor="userName">User Name</Label>
             <Input
+              id="userName"
               {...register('userName')}
               hasError={!!errors.userName}
+              aria-invalid={!!errors.userName}
+              aria-describedby={errors.userName ? "userName-error" : undefined}
             />
             {errors.userName && (
-              <ErrorMessage>{errors.userName.message}</ErrorMessage>
+              <ErrorMessage id="userName-error" role="alert">{errors.userName.message}</ErrorMessage>
             )}
           </FormGroup>
           <FormGroup>
-            <Label>Password</Label>
+            <Label htmlFor="password">Password</Label>
             <Input
+              id="password"
               {...register('password')}
               hasError={!!errors.password}
+              aria-invalid={!!errors.password}
+              aria-describedby={errors.password ? "password-error" : undefined}
             />
             {errors.password && (
-              <ErrorMessage>{errors.password.message}</ErrorMessage>
+              <ErrorMessage id="password-error" role="alert">{errors.password.message}</ErrorMessage>
             )}
           </FormGroup>
 
           <FormGroup>
-            <Label>Present Address</Label>
+            <Label htmlFor="presentAddress">Present Address</Label>
             <Input
+              id="presentAddress"
               {...register('presentAddress')}
               hasError={!!errors.presentAddress}
+              aria-invalid={!!errors.presentAddress}
+              aria-describedby={errors.presentAddress ? "presentAddress-error" : undefined}
             />
             {errors.presentAddress && (
-              <ErrorMessage>{errors.presentAddress.message}</ErrorMessage>
+              <ErrorMessage id="presentAddress-error" role="alert">{errors.presentAddress.message}</ErrorMessage>
             )}
           </FormGroup>
 
           <FormGroup>
-            <Label>City</Label>
+            <Label htmlFor="city">City</Label>
             <Input
+              id="city"
               {...register('city')}
               hasError={!!errors.city}
+              aria-invalid={!!errors.city}
+              aria-describedby={errors.city ? "city-error" : undefined}
             />
             {errors.city && (
-              <ErrorMessage>{errors.city.message}</ErrorMessage>
+              <ErrorMessage id="city-error" role="alert">{errors.city.message}</ErrorMessage>
             )}
           </FormGroup>
           <FormGroup>
-            <Label>Country</Label>
+            <Label htmlFor="country">Country</Label>
             <Input
+              id="country"
               {...register('country')}
               hasError={!!errors.country}
+              aria-invalid={!!errors.country}
+              aria-describedby={errors.country ? "country-error" : undefined}
             />
             {errors.country && (
-              <ErrorMessage>{errors.country.message}</ErrorMessage>
+              <ErrorMessage id="country-error" role="alert">{errors.country.message}</ErrorMessage>
             )}
           </FormGroup>
-          <SaveButton type="submit">Save</SaveButton>
+          <SaveButton 
+            type="submit"
+            aria-label="Save profile changes"
+          >
+            Save
+          </SaveButton>
         </FormMainContainer>
       </FormContainer>
     </SettingsContainer>

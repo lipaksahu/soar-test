@@ -190,23 +190,26 @@ const QuickTransfer: React.FC = () => {
         <LoadingSpinner />
       ) : (
         <>
-          <ContactsScroll>
+          <ContactsScroll aria-label="Contact list for quick transfer">
             {contacts.map(contact => (
               <ContactCard
                 key={contact.id}
                 isSelected={selectedContact === contact.id}
                 onClick={() => setSelectedContact(contact.id)}
+                aria-label={`Select ${contact.name}, ${contact.role}`}
+                role="button"
+                aria-pressed={selectedContact === contact.id}
               >
-                <ContactImage src={contact.image} alt={contact.name} />
+                <ContactImage src={contact.image} alt={`${contact.name}'s profile`} />
                 <ContactName isSelected={selectedContact === contact.id}>{contact.name}</ContactName>
                 <ContactRole isSelected={selectedContact === contact.id}>{contact.role}</ContactRole>
               </ContactCard>
             ))}
-            <IconButton>
-                <img src="/right_arrow.svg" alt="Right Arrow" />
+            <IconButton aria-label="Scroll contacts right">
+                <img src="/right_arrow.svg" alt="Scroll right" />
             </IconButton>
           </ContactsScroll>
-          <TransferForm onSubmit={handleTransfer}>
+          <TransferForm onSubmit={handleTransfer} aria-label="Money transfer form">
             <AmountLabel>
                 Write Amount
             </AmountLabel>
@@ -215,9 +218,14 @@ const QuickTransfer: React.FC = () => {
               placeholder="525.50"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
+              aria-label="Transfer amount"
             />
-            <SendButton type="submit" disabled={!selectedContact || !amount}>
-              Send  <img src={'/send.png'} alt="Send Button" />
+            <SendButton 
+              type="submit" 
+              disabled={!selectedContact || !amount}
+              aria-label="Send transfer"
+            >
+              Send  <img src={'/send.png'} alt="Send icon" />
             </SendButton>
           </TransferForm>
         </>

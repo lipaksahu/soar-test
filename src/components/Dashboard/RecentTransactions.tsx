@@ -67,22 +67,32 @@ const RecentTransactions: React.FC = () => {
   const { transactions } = state;
 
   return (
-    <TransactionsContainer>
-      <TransactionList>
+    <TransactionsContainer aria-label="Recent transactions">
+      <TransactionList role="list">
         {transactions.map(transaction => (
-          <TransactionItem key={transaction.id}>
+          <TransactionItem 
+            key={transaction.id} 
+            role="listitem"
+            aria-label={`${transaction.name} transaction of ${transaction.amount} on ${transaction.date}`}
+          >
             <TransactionInfo>
-              <IconWrapper type={transaction.type}>
-                {transaction.type === 'card' && <img src="/cards.png" alt="Cards" />}
-                {transaction.type === 'paypal' && <img src="/paypal.png" alt="PayPal" />}
-                {transaction.type === 'transfer' && <img src="/currency.png" alt="Currency" />}
+              <IconWrapper 
+                type={transaction.type}
+                aria-label={`Payment method: ${transaction.type}`}
+              >
+                {transaction.type === 'card' && <img src="/cards.png" alt="Credit card payment" />}
+                {transaction.type === 'paypal' && <img src="/paypal.png" alt="PayPal payment" />}
+                {transaction.type === 'transfer' && <img src="/currency.png" alt="Bank transfer" />}
               </IconWrapper>
               <Details>
                 <Name>{transaction.name}</Name>
-                <Date>{transaction.date}</Date>
+                <Date aria-label={`Transaction date: ${transaction.date}`}>{transaction.date}</Date>
               </Details>
             </TransactionInfo>
-            <Amount isPositive={transaction.isPositive}>
+            <Amount 
+              isPositive={transaction.isPositive}
+              aria-label={`Amount: ${transaction.amount}`}
+            >
               {transaction.amount}
             </Amount>
           </TransactionItem>

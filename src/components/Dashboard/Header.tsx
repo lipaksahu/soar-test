@@ -122,38 +122,41 @@ const Header: React.FC = () => {
   };
 
   return (
-    <HeaderContainer>
-      <Title>{getTitle()}</Title>
-      <RightSection>
-        <SearchBar>
-          <SearchIcon>
+    <HeaderContainer role="banner" aria-label="Dashboard header">
+      <Title role="heading" aria-level={1}>{getTitle()}</Title>
+      <RightSection aria-label="Header actions">
+        <SearchBar role="search">
+          <SearchIcon aria-hidden="true">
             <img src="/search.png" width="20" height="20" alt="Search Icon" />
           </SearchIcon>
           <SearchInput 
             type="text" 
             placeholder="Search for something"
+            aria-label="Search dashboard"
           />
         </SearchBar>
-        <IconButton>
+        <IconButton aria-label="Open settings">
             <img src="/settings.png" width="20" height="20" alt="Settings Icon" />
         </IconButton>
-        <IconButton>
+        <IconButton aria-label="View notifications">
             <img src="/notification.png" width="20" height="20" alt="Notification Icon" />
         </IconButton>
         <ProfileImage 
           src={'/Mask Group (3).png'} 
-          alt={user.name}
+          alt={`${user.name}'s profile picture`}
+          aria-label={`${user.name}'s profile`}
         />
       </RightSection>
-      <SearchBarMobile>
-        <SearchIcon>
+      <SearchBarMobile role="search">
+        <SearchIcon aria-hidden="true">
          <img src="/search.png" width="20" height="20" alt="Search Icon" />
         </SearchIcon>
         <SearchInput 
             type="text" 
             placeholder="Search for something"
+            aria-label="Search dashboard"
         />
-    </SearchBarMobile>
+      </SearchBarMobile>
     </HeaderContainer>
   );
 };
