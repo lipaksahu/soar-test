@@ -134,7 +134,7 @@ const Card = styled.div<{ isDark?: boolean }>`
 `;
 
 const MyCards: React.FC = () => {
-  const { state, dispatch } = useApp();
+  const { state } = useApp();
   const { cards } = state;
 
   return (

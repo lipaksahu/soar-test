@@ -63,11 +63,11 @@ const ExpenseStatistics: React.FC = () => {
         font: {
           size: 12,
         },
-        anchor: 'left',
-        align: 'center',
+        anchor: 'center' as const,
+        align: 'center' as const,
       },
     },
-  };
+  } as const;
 
   return (
     <ChartContainer>

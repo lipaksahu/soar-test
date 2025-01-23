@@ -108,7 +108,7 @@ const Dashboard: React.FC = () => {
         setIsLoading(true);
         setError(null);
 
-        const [cards, transactions] = await Promise.all([
+        const [cards] = await Promise.all([
           api.getCards(),
           api.getTransactions()
         ]);

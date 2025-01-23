@@ -118,7 +118,9 @@ const WeeklyActivity: React.FC = () => {
         },
         ticks: {
           color: '#A3AED0',
-          callback: (value: number) => `${value}`,
+          callback: function(tickValue: string | number) {
+            return `${tickValue}`;
+          },
           stepSize: 100,
         },
         border: {
@@ -126,7 +128,7 @@ const WeeklyActivity: React.FC = () => {
         }
       },
     },
-  };
+  } as const;
 
   return (
     <ChartContainer>

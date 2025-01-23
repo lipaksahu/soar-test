@@ -89,7 +89,9 @@ const BalanceHistory: React.FC = () => {
         },
         ticks: {
           color: '#A3AED0',
-          callback: (value: number) => `${value}`,
+          callback: function(tickValue: number | string) {
+            return `${tickValue}`;
+          },
           stepSize: 200,
           font: {
             size: 12,
@@ -101,7 +103,7 @@ const BalanceHistory: React.FC = () => {
         },
       },
     },
-  };
+  } as const;
 
   return (
     <ChartContainer>
