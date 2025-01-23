@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useApp } from '../../context/AppContext';
+import { useLocation } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -108,10 +109,21 @@ const ProfileImage = styled.img`
 const Header: React.FC = () => {
   const { state } = useApp();
   const { user } = state;
+  const location = useLocation();
+
+  const getTitle = () => {
+    switch (location.pathname) {
+      case '/settings':
+        return 'Settings';
+      case '/':
+      default:
+        return 'Overview';
+    }
+  };
 
   return (
     <HeaderContainer>
-      <Title>Overview</Title>
+      <Title>{getTitle()}</Title>
       <RightSection>
         <SearchBar>
           <SearchIcon>
@@ -135,11 +147,11 @@ const Header: React.FC = () => {
       </RightSection>
       <SearchBarMobile>
         <SearchIcon>
-        <img src="/search.png" width="20" height="20" alt="Search Icon" />
+         <img src="/search.png" width="20" height="20" alt="Search Icon" />
         </SearchIcon>
         <SearchInput 
-        type="text" 
-        placeholder="Search for something"
+            type="text" 
+            placeholder="Search for something"
         />
     </SearchBarMobile>
     </HeaderContainer>

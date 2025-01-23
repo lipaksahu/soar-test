@@ -218,7 +218,24 @@ const Settings: React.FC = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [profileImage, setProfileImage] = useState('/Mask Group (3).png');
   
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
+      // Here you would typically upload the image to your server
+      // and update the user's profile with the new image URL
+    }
+  };
+
+  const handleEditClick = () => {
+    fileInputRef.current?.click();
+  };
+
   const {
     register,
     handleSubmit,
@@ -290,10 +307,17 @@ const Settings: React.FC = () => {
 
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <ProfileImageContainer>
-          <ProfileImage src={'/Mask Group (3).png'} alt="Profile" />
-          <EditIcon>
+          <ProfileImage src={profileImage} alt="Profile" />
+          <EditIcon onClick={handleEditClick}>
             <img src="/edit.png" width="20" height="20" alt="Edit Icon" />
           </EditIcon>
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleImageSelect}
+            accept="image/*"
+            style={{ display: 'none' }}
+          />
         </ProfileImageContainer>
         <FormMainContainer>
           <FormGroup>
