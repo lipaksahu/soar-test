@@ -20,6 +20,10 @@ A modern financial dashboard built with React, TypeScript, and Styled Components
 - React Hook Form
 - Yup Validation
 
+## Requirements
+
+- Node.js >= 18.0.0
+
 ## Getting Started
 
 1. Clone the repository:
@@ -44,11 +48,12 @@ A modern financial dashboard built with React, TypeScript, and Styled Components
 
 ## Project Structure
 
+```
 src/
 ├── components/
-│ ├── Dashboard/
-│ ├── Settings/
-│ └── common/
+│   ├── Dashboard/
+│   ├── Settings/
+│   └── common/
 ├── context/
 ├── services/
-├── styles/
+└── styles/
