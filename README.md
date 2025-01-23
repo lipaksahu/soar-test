@@ -22,29 +22,25 @@ A modern financial dashboard built with React, TypeScript, and Styled Components
 
 ## Getting Started
 
-bash
-
 1. Clone the repository:
-
-git clone <repository-url>
+   ```bash
+   git clone <repository-url>
+   ```
 
 2. Install dependencies:
-
-bash
-
-npm install
+   ```bash
+   npm install
+   ```
 
 3. Start the development server:
-
-bash
-
-npm start
+   ```bash
+   npm start
+   ```
 
 4. Build for production:
-
-bash
-
-npm run build
+   ```bash
+   npm run build
+   ```
 
 ## Project Structure
 
@@ -56,4 +52,3 @@ src/
 ├── context/
 ├── services/
 ├── styles/
-└── pages/
